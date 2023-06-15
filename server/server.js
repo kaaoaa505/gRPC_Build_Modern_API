@@ -7,7 +7,10 @@ function greet(call, callback){
     var greeting = new greets.GreetResponse();
 
     greeting.setResult(
-        'Hello, ' + call.request.getGreeting().getFirstName()
+        'Hello, ' + 
+        call.request.getGreeting().getFirstName() +
+        ' ' +
+        call.request.getGreeting().getLastName()
     );
 
     callback(null, greeting);
