@@ -6,13 +6,8 @@ var greet_grpc_pb = require("../server/proto/greet_grpc_pb");
 var calc_pb = require("../server/proto/calc_pb");
 var calc_grpc_pb = require("../server/proto/calc_grpc_pb");
 
-function main() {
+function call_greet_service(){
   var greet_client = new greet_grpc_pb.GreetServiceClient(
-    "localhost:50051",
-    grpc.credentials.createInsecure()
-  );
-
-  var calc_client = new calc_grpc_pb.calcServiceClient(
     "localhost:50051",
     grpc.credentials.createInsecure()
   );
@@ -24,10 +19,6 @@ function main() {
   var greet_request = new greet_pb.GreetRequest();
   greet_request.setGreeting(greetObj);
 
-  var calc_request = new calc_pb.SumRequest();
-  calc_request.setFirstNumber(200900);
-  calc_request.setSecondNumber(700100);
-
   greet_client.greet(greet_request, (error, response) => {
     if (!error) {
       console.log("✅ Greeting Response is: ", response.getResult());
@@ -35,6 +26,17 @@ function main() {
       console.log("✅ Greeting Response -ERROR- is: ", error);
     }
   });
+}
+
+function call_calc_service(){
+  var calc_client = new calc_grpc_pb.calcServiceClient(
+    "localhost:50051",
+    grpc.credentials.createInsecure()
+  );
+
+  var calc_request = new calc_pb.SumRequest();
+  calc_request.setFirstNumber(200900);
+  calc_request.setSecondNumber(700100);
 
   calc_client.sum(calc_request, (error, response) => {
     if (!error) {
@@ -50,5 +52,10 @@ function main() {
       console.log("✅ Sum Response -ERROR- is: ", error);
     }
   });
+}
+
+function main() {
+    call_greet_service();
+    call_calc_service();
 }
 main();
