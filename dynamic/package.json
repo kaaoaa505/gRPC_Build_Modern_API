@@ -1,7 +1,8 @@
 {
-  "name": "grpc_build_modern_api_static",
+  "name": "grpc_build_modern_api_dynamic",
   "version": "1.0.0",
-  "description": "basic grpc static learning",
+  "description": "basic grpc dynamic learning",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,10 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@grpc/grpc-js": "^1.8.15",
-    "google-protobuf": "^3.21.2"
-  },
-  "devDependencies": {
-    "@types/google-protobuf": "^3.15.6"
+    "@grpc/proto-loader": "^0.7.7"
   },
   "type": "commonjs"
 }
